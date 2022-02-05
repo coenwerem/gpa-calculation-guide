@@ -1,0 +1,259 @@
+\documentclass[letter]{article}
+\usepackage{graphicx}
+\usepackage[top=.2in,bottom =.5in, left=7.5mm, right=7.5mm ]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{csvsimple}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage{booktabs}           % for table rules
+\usepackage{pgfplotstable}      % Generates table from .csv
+\usepackage{filecontents}       % <--- important: enable table refreshing at each compilation
+\usepackage{microtype}   %For better text formatting
+\usepackage{wrapfig} % For wrapping text around images
+\usepackage[hang,bf,small]{caption}
+\usepackage{array,multirow,makecell}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash }b{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash }b{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash }b{#1}}
+
+%---------------------------------------------------------------%
+%\begin{filecontents*}{firstsem.csv}
+%	COURSE CODE; COURSE TITLE; UNITS; GRADE SCORE; GRADE;	GRADE POINTS
+%	; FIRST SEMESTER; ; ; ;
+%	CHM101;	BASIC PRINCIPLES OF CHEMISTRY I; 2; 65; B; 8
+%	CHM171;	BASIC PRACTICAL CHEMISTRY; 2; 60; B; 8
+%	ENGR101; INTRODUCTION TO ENGINEERING; 2; 60; B; 8
+%	GSP101;	COMMUNICATION IN ENGLISH I; 2; 71; A; 10
+%	GSP111;	INTRODUCTION TO THE USE OF LIBRARY; 2; 79; A; 10
+%	MTH111;	ELEMENTARY MATHEMATICS I; 3; 81; A; 15
+%	MTH121;	ELEMENTARY MATHEMATICS II; 3; 88; A; 15
+%	PHY121;	FUNDAMENTALS OF PHYSICS I; 3; 90; A; 15
+%	PHY195;	PRACTICAL PHYSICS II; 2; 95; A; 10
+%	; TOTAL UNITS;	21;	; ; 99
+%\end{filecontents*}
+%---------------------------------------------------------------%
+
+%---------------------------------------------------------------%
+%\begin{filecontents*}{secondsem.csv}
+%	COURSE CODE; COURSE TITLE; UNITS; GRADE SCORE; GRADE;	GRADE POINTS
+%	; SECOND SEMESTER; ; ; ;
+%	CHM112;	BASIC PRINCIPLES OF INORGANIC CHEMISTRY I; 2; 68; B; 8
+%	CHM122;	BASIC PRINCIPLES OF ORGANIC CHEMISTRY; 2; 64; B; 8
+%	ENGR102; APPLIED MECHANICS; 3; 85; A; 15
+%	GSP102;	COMMUNICATION IN ENGLISH II; 2; 67; B; 8
+%	PHY116;	GENERAL PHYSICS FOR PHYSICAL SCIENCES II; 2; 76; A; 10
+%	MTH122;	ELEMENTARY MATHEMATICS III;	3; 94; A; 15
+%	PHY124;	FUNDAMENTALS OF PHYSICS III;	3; 80;	A; 15
+%		; TOTAL UNITS;	17;	; ; 79
+%\end{filecontents*}
+%---------------------------------------------------------------%
+
+% Author Details
+\author{Clinton Enwerem}
+\title{\textbf{GPA Calculation Guide}}
+\date{Spring 2021}
+
+% Global Definitions
+\setlength\parindent{0ex}
+\setlength{\parskip}{7px}
+\setlength\heavyrulewidth{0.01ex} % Setting width of \toprule
+\def\ndash{\textendash}
+%	Style footer
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\cfoot{\thepage \ of \pageref{LastPage}}
+\setlist[enumerate]{noitemsep, leftmargin=*}
+
+\begin{document}
+
+\vspace{-5pt}
+\maketitle
+\thispagestyle{fancy} % To stop \maketitle from breaking the page numbering style
+\sffamily
+\textbf{Introduction}\\
+\normalfont
+This document details the GPA/CGPA calculation process. While it was written primarily for students in Nigerian universities, I believe the calculation steps outlined here are applicable to a couple of universities in other countries with a similar GPA scale and grading system.
+
+\sffamily
+\textbf{Calculating GPA}\\
+\normalfont
+Many universities in Nigeria use the \textbf{5.0} Grade Point Average (GPA) scale and the letter grading (\textsc{a, b, c, d, f}) system. Notice I missed an \textsc{e}. It is deliberate. Several universities in Nigeria have removed the \textsc{e} grade (thus raising the pass mark to 45) following a 2006 abolition of the Pass grade by the National Universities Commission (NUC) \cite{nuc2015}. Thus, each grade now corresponds to the following points as shown in Table \ref{tab:gradepts}.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{p{1cm}p{1.5cm}l}
+		\hline
+		\textbf{Letter Grade} & \textbf{Score Range} & \textbf{Point} \\
+		\hline
+		\textsc{a}            & 70 \ndash 100        & 5.00           \\
+		\textsc{b}            & 60 \ndash \ 69       & 4.00           \\
+		\textsc{c}            & 50 \ndash \ 59       & 3.00           \\
+		\textsc{d}            & 45 \ndash \ 49       & 2.00           \\
+		\textsc{f}            & 0 \ndash \ 44        & 0.00           \\
+		\hline
+	\end{tabular}
+	\caption{Letter Grading System in Nigeria (post-2006).}
+	\label{tab:gradepts}
+\end{table}
+
+So, each \textsc{a} a student receives is worth 5 points, each \textsc{b} is worth 4 points, and so on. Thus, an \textsc{a} in a 3 unit (credit hour) course corresponds to $3\times5$ or 15 points, a \textsc{b} is equivalent to $2\times5$ or 10 points, etc. Noting these relationships, the GPA is computed using the following formula:
+\begin{equation}
+	\text{GPA} = \frac{\text{Total Grade Points}}{\text{Total Units}}
+\end{equation}
+%	\begin{figure}[h]
+%		\centering
+%		\includegraphics[scale=0.7]{first.png}
+%		\caption{Sample First Semester Result}
+%		\label{fig:first}
+%	\end{figure}
+Consider the example in Table \ref{tab:first} below. A first-year student has just seen their first (Fall) semester results. The wait is finally over!
+%	RESULT 1
+\begin{table}[h]
+	\centering
+	\pgfplotstabletypeset[
+		multicolumn names,
+		col sep=semicolon,  % the separator in our .csv file
+		string type,        % added in hopes of enabling alphabetic input.
+		header=has colnames,
+		every head row/.style={before row=\toprule,after row=\midrule,},
+		every last row/.style={before row=\toprule,after row=\bottomrule},
+		display columns/0/.style={string type, column type={L{.3cm}}},
+		display columns/1/.style={string type, column type={L{7cm}}},
+		display columns/2/.style={string type, column type={L{.5cm}}},
+		display columns/3/.style={string type, column type={L{.5cm}}},
+		display columns/4/.style={string type, column type={L{.5cm}}},
+		display columns/5/.style={string type, column type={L{.5cm}}},
+		display columns/6/.style={string type, column type={L{.2cm}}},
+	]{firstsem.csv}
+	\captionof{table}{Sample First Semester Result}
+	\label{tab:first}
+\end{table}
+
+Using the result in Table \ref{tab:first} and our formula in (1), we can calculate the student's first semester GPA as:
+\begin{align*}
+	\text{GPA}_{\text{1st semester}}            & = \frac{99}{21} \\
+	\therefore \text{GPA}_{\text{1st semester}} & \approx 4.71    \\
+\end{align*}
+
+%	\newpage
+Table \ref{tab:second} is the student's second semester result. This student seems not to have appeased the gods of Chemistry.
+%	\begin{figure}[h]
+%		\centering
+%		\includegraphics[scale=0.8]{second.png}
+%		\caption{Sample Second Semester Result}
+%		\label{fig:second}
+%	\end{figure}
+
+%	RESULT 2
+\begin{table}[h]
+	\centering
+	\pgfplotstabletypeset[
+		multicolumn names,
+		col sep=semicolon,  % the separator in our .csv file
+		string type,        % added in hopes of enabling alphabetic input.
+		header=has colnames,
+		every head row/.style={before row=\toprule,after row=\midrule,},
+		every last row/.style={before row=\toprule,after row=\bottomrule},
+		display columns/0/.style={string type, column type={L{.3cm}}},
+		display columns/1/.style={string type, column type={L{7cm}}},
+		display columns/2/.style={string type, column type={L{.5cm}}},
+		display columns/3/.style={string type, column type={L{.5cm}}},
+		display columns/4/.style={string type, column type={L{.5cm}}},
+		display columns/5/.style={string type, column type={L{.5cm}}},
+		display columns/6/.style={string type, column type={L{.2cm}}},
+	]{secondsem.csv}
+	\captionof{table}{Sample Second Semester Result}
+	\label{tab:second}
+\end{table}
+
+Similarly, we can calculate our `hypothetical' student's second semester GPA as follows:
+\begin{align*}
+	\text{GPA}_{\text{2nd semester}}            & = \frac{79}{17} \\
+	\therefore \text{GPA}_{\text{2nd semester}} & \approx 4.65    \\
+\end{align*}
+
+\sffamily
+\textbf{Calculating CGPA}\\
+\normalfont
+The Cumulative Grade Point Average (CGPA) is an aggregate measure of a student's academic performance beginning from their very first semester. It is `cumulative,' meaning it adds up. Sleep a little too much one semester and you're toast. On the flip side, make all \textsc{a}s and you're the new geek in town. Get the point?
+
+With regard to CGPA calculation, there are two main schools of thought - those that compute it by averaging (albeit wrongly) and those that use the approach that will be discussed here. This method, as you will find if you inquire at your university, is the standard used by most Nigerian University Faculties and Registrar Offices to obtain a student's CGPA. With this technique, you are sure to get the closest estimate of your actual CGPA. Trust me, you do not want to be that student who thinks that they have made a first (4.5) when their actual CGPA is 4.49 :(
+
+To calculate your CGPA, use the following formula:
+\begin{equation}
+	\text{CGPA} = \frac{\text{Total Grade Points of all semesters (till date)}}{\text{Total Units of all graded courses taken (till date)}}
+\end{equation}
+
+Simple, right? Yes, that's how easy it is to compute your CGPA. Using the formula in (2), we can now calculate the above-mentioned student's CGPA as:
+\begin{align*}
+	\text{CGPA}_{\text{first year}}            & = \frac{99+79}{21+17} \\
+	\text{CGPA}_{\text{first year}}            & = \frac{178}{38}      \\
+	\therefore \text{CGPA}_{\text{first year}} & \approx 4.68          \\
+\end{align*}
+
+Thankfully, the student is still on a first class. Phew! With (2), we can also calculate the student's CGPA as their subsequent semester results are released. For instance, with Chemistry finally out of the way (:'D), this student scores a perfect GPA (5.0) in the first (Fall) semester of their sophomore year (with 105 and 21 grade points and credit units in total, respectively). Using these values, we can compute this student's current CGPA for the 3rd semester out of a possible 10 (for a 5-year course) as:
+\begin{align*}
+	\text{CGPA}_{\text{3/10}}            & = \frac{99+79+105}{21+17+21}                        \\
+	\text{CGPA}_{\text{3/10}}            & = \frac{283}{59}                                    \\
+	\therefore \text{CGPA}_{\text{3/10}} & \approx 4.79 \ (\text{Always round down to 2 d.p.}) \\
+\end{align*}
+That's a whopping 0.11 jump in CGPA from 4.68! I hope you can already see the good things a 5.0 can do to your CGPA. Now, why is all of this even necessary?
+
+%	\newpage
+\sffamily
+\textbf{Why you should calculate your CGPA}\\
+\normalfont
+There are many reasons why students should calculate their CGPA. While the following list is in no way exhaustive, it contains the most common reasons (I think) a student computes their CGPA.
+\begin{enumerate}
+	\item To keep tabs on their academic progress. Do not be the student that is always trying to remember their MTH102 grade from first year. Calculate (and document) your CGPA!
+	\item To have a handy (electronic and printable) record (more like an unofficial transcript) of their grades. This copy can be saved with a free cloud storage service like \href{https://onedrive.live.com/about/en-us/signin/}{OneDrive}, \href{https://www.google.com/drive/}{Google Drive}, \href{https://mega.io/}{Mega}, etc. for easy access. Pick one or all! :D
+	\item For employment/scholarship/research applications that require transcripts. If your undergrad university has not come through yet with their copy and you're pressed for time, this copy can serve as a quick alternative. However, ensure that you have it endorsed (if you can) by your department Head (or Chair) before using it. Also, if an official copy was originally requested, remember to explain clearly to the requesting body that your transcript is an unofficial copy and that you could not get anything better given the time constraints.
+	\item For converting between GPA scales. If you intend to pursue graduate (Master's/Doctoral) studies in the US for example, you want to convert your CGPA to a 4-point scale. There are a couple of online services (e.g. \href{https://applications.wes.org/igpa-calculator/}{WES' iGPA calculator}) that you can use for free to arrive at a rough (unofficial, but close to the real) estimate of your CGPA on a 4-point scale. And no Einstein, simple equivalence will not work here. In such a case, having a handy version of your scores (you will need this for the WES iGPA calculator) will save you a lot of erroneous brain-wracking.
+
+\end{enumerate}
+
+\sffamily
+\textbf{Is it all about your CGPA?}\\
+\normalfont
+An emphatic NO! There are a ton of things you can (and should) devote your time to as a student, beyond your curriculum. There are extracurriculars (volunteering, leadership, clubs, competitions, etc.), online courses and certifications, research, etc. Your goal should be to maintain a healthy balance of every facet.
+
+However, with that said, you should try to keep your CGPA as high as you can. A first class will not automatically open the door to every opportunity out there, but it will surely get your foot in the door! I do not know any high-achiever (A-student) with strong extracurriculars to go with, that is not either gainfully employed or at the zenith of their careers (academically or professionally). Be that student. Add the extra to the ordinary.\\
+
+\sffamily
+\textbf{About the Author}\\
+\vspace{-12px}
+\normalfont
+\begin{wrapfigure}{r}{0.22\textwidth}
+	\begin{center}
+		\setlength{\fboxrule}{1.2pt}
+		\setlength{\fboxsep}{-1pt}
+		\fbox{\includegraphics[width=0.22\textwidth]{author1-old.jpg}}
+	\end{center}
+\end{wrapfigure}
+Clinton Enwerem holds a first-class Bachelor’s degree in Electrical Engineering from the University of Nigeria, Nsukka, where he also finished in the top 3\% as the Class of 2018 best student in Control Systems.
+
+As an undergraduate, Clinton was a beneficiary of prestigious scholarships like the MTN Foundation Scholarship and the Agbami Medical and Engineering Professionals Scholarship. During this time, he served in various leadership positions, notably Assistant Technical Coordinator (for a campus guild) and Public Relations Officer (for an electronics club). Clinton was also a volunteer math tutor for a remedial pre-varsity academy and taught college-level math to freshmen and sophomores. A budding researcher, within two years following the award of his baccalaureate, Clinton co-authored four international research papers in top journals and conferences investigating model-based and robust control schemes.
+
+Outside academia, Clinton is a certified robotics engineer and technology entrepreneur passionate about educating a generation of African roboticists in preparation for Industry 4.0. Recently, working at Nigeria’s premier robotics research center, Robotics and Artificial Intelligence Nigeria (RAIN), Clinton built a ROS-compliant mini ground vehicle prototype with teleoperation and obstacle-avoidance features targeted at robotics enthusiasts. At RAIN, he also worked with a team to develop a modular ground robot platform and a quadrotor drone. In the spring of 2021, Clinton co-founded Kognitive Robotics to change the face of robotics in Africa by creating advanced all-inclusive robotics platforms.
+
+%	In the summer of 2020, Clinton was one of the 40 out of 800 first-class applicants selected to participate in the highly-competitive EducationUSA Opportunity Funds Program, which marked a game-changing point in his postgraduate aspirations. Through the expert mentorship and guidance offered by the program, he secured a fully-funded scholarship for a Ph.D. in Electrical and Computer Engineering at the University of Maryland (UMD), College Park. Clinton will be attending UMD as a Dean’s Fellow and Graduate Research Assistant in the Autonomy, Robotics, and Cognition lab, where he aims to conduct research on Learning-Based Control for Autonomous Agents.
+
+Clinton has prepared this guide to encourage university students to keep records of their academic journey by calculating and documenting their grades and GPAs. Ultimately, his goal for this write-up is to spur undergraduates to attain to their best holistically during their university sojourn and beyond. You can write him at \texttt{clintonenwerem at gmail dot com}.
+
+Clinton is currently a Graduate Research Assistant and Electrical and Computer Engineering Ph.D. student at the University of Maryland, College Park, U.S.A.
+%	In-text bibliography definitions
+\renewcommand\refname{\sffamily Reference}
+\lhead{}
+\rhead{}
+\begin{thebibliography}{}
+	\bibitem{nuc2015}
+	National Universities Commission,
+	``\textit{Stakeholders Review Grading System in Nigerian Universities}'',
+	\url{https://www.nuc.edu.ng/stakeholders-review-grading-system-in-nigerian-universities/},
+	2015,
+	[Online]. Accessed 28-May-2021.
+\end{thebibliography}
+\end{document}
