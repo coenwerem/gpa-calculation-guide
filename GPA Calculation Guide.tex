@@ -4,7 +4,15 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{csvsimple}
-\usepackage{hyperref}
+\RequirePackage[hidelinks, bookmarks, bookmarksopen=true, plainpages=false, pdfpagelabels, pdfpagelayout=SinglePage, breaklinks = true]{hyperref}
+\hypersetup{
+colorlinks=true,
+linkcolor=blue,
+filecolor=black,      
+urlcolor=blue,
+citecolor = red,
+breaklinks=true,
+}
 \usepackage{enumitem}
 \usepackage{lastpage}
 \usepackage{fancyhdr}
@@ -180,7 +188,7 @@ Similarly, we can calculate our `hypothetical' student's second semester GPA as 
 \normalfont
 The Cumulative Grade Point Average (CGPA) is an aggregate measure of a student's academic performance beginning from their very first semester. It is `cumulative,' meaning it adds up. Sleep a little too much one semester and you're toast. On the flip side, make all \textsc{a}s and you're the new geek in town. Get the point?
 
-With regard to CGPA calculation, there are two main schools of thought - those that compute it by averaging (albeit wrongly) and those that use the approach that will be discussed here. This method, as you will find if you inquire at your university, is the standard used by most Nigerian University Faculties and Registrar Offices to obtain a student's CGPA. With this technique, you are sure to get the closest estimate of your actual CGPA. Trust me, you do not want to be that student who thinks that they have made a first (4.5) when their actual CGPA is 4.49 :(
+With regard to CGPA calculation, there are two main schools of thought - those that compute it by averaging (albeit wrongly) and those that use the approach that will be discussed here. This method, as you will find if you inquire at your university, is the standard used by several universities to obtain a student's CGPA. With this technique, you are sure to get the closest estimate of your actual CGPA. Trust me, you do not want to be that student who thinks that they have made a first (4.5) when their actual CGPA is 4.49 :(
 
 To calculate your CGPA, use the following formula:
 \begin{equation}
@@ -200,7 +208,7 @@ Thankfully, the student is still on a first class. Phew! With (2), we can also c
 	\text{CGPA}_{\text{3/10}}            & = \frac{283}{59}                                    \\
 	\therefore \text{CGPA}_{\text{3/10}} & \approx 4.79 \ (\text{Always round down to 2 d.p.}) \\
 \end{align*}
-That's a whopping 0.11 jump in CGPA from 4.68! I hope you can already see the good things a 5.0 can do to your CGPA. Now, why is all of this even necessary?
+That's a whopping 0.11 jump in CGPA from 4.68! I hope you can already see the good things a perfect GPA can do to your CGPA. Now, why is all of this even necessary?
 
 %	\newpage
 \sffamily
@@ -209,16 +217,16 @@ That's a whopping 0.11 jump in CGPA from 4.68! I hope you can already see the go
 There are many reasons why students should calculate their CGPA. While the following list is in no way exhaustive, it contains the most common reasons (I think) a student computes their CGPA.
 \begin{enumerate}
 	\item To keep tabs on their academic progress. Do not be the student that is always trying to remember their MTH102 grade from first year. Calculate (and document) your CGPA!
-	\item To have a handy (electronic and printable) record (more like an unofficial transcript) of their grades. This copy can be saved with a free cloud storage service like \href{https://onedrive.live.com/about/en-us/signin/}{OneDrive}, \href{https://www.google.com/drive/}{Google Drive}, \href{https://mega.io/}{Mega}, etc. for easy access. Pick one or all! :D
-	\item For employment/scholarship/research applications that require transcripts. If your undergrad university has not come through yet with their copy and you're pressed for time, this copy can serve as a quick alternative. However, ensure that you have it endorsed (if you can) by your department Head (or Chair) before using it. Also, if an official copy was originally requested, remember to explain clearly to the requesting body that your transcript is an unofficial copy and that you could not get anything better given the time constraints.
-	\item For converting between GPA scales. If you intend to pursue graduate (Master's/Doctoral) studies in the US for example, you want to convert your CGPA to a 4-point scale. There are a couple of online services (e.g. \href{https://applications.wes.org/igpa-calculator/}{WES' iGPA calculator}) that you can use for free to arrive at a rough (unofficial, but close to the real) estimate of your CGPA on a 4-point scale. And no Einstein, simple equivalence will not work here. In such a case, having a handy version of your scores (you will need this for the WES iGPA calculator) will save you a lot of erroneous brain-wracking.
+	\item To have a handy (electronic and printable) record or an unofficial transcript, if you will, of their grades. This copy can be saved with a free cloud storage service like \href{https://onedrive.live.com/about/en-us/signin/}{OneDrive}, \href{https://www.google.com/drive/}{Google Drive}, \href{https://mega.io/}{Mega}, etc. for easy access. Pick one or all! :D
+	\item For employment/scholarship/research applications that require transcripts. If your undergrad university has not come through yet with their copy and you're pressed for time, this copy can serve as a quick alternative. However, ensure that you have it endorsed (if you can) by your department Head (or Chair) before using it. Also, if an official copy was originally requested, remember to explain clearly to the requesting body that your transcript is an unofficial copy and that you could not get anything better given the time constraint.
+	\item For converting between GPA scales. If you intend to pursue graduate (Master's/Doctoral) studies in the US for example, you want to convert your CGPA to a 4-point scale. There are a couple of online services (e.g. \href{https://applications.wes.org/igpa-calculator/}{WES' iGPA calculator}) that you can use for free to arrive at a rough (unofficial, but close to the real) estimate of your CGPA on a 4-point scale. And no, Einstein, simple equivalence will not work here. In such a case, having a handy version of your scores (you will need this for the WES iGPA calculator) will save you a lot of erroneous brain-wracking.
 
 \end{enumerate}
 
 \sffamily
-\textbf{Is it all about your CGPA?}\\
+\textbf{Is college all about your CGPA?}\\
 \normalfont
-An emphatic NO! There are a ton of things you can (and should) devote your time to as a student, beyond your curriculum. There are extracurriculars (volunteering, leadership, clubs, competitions, etc.), online courses and certifications, research, etc. Your goal should be to maintain a healthy balance of every facet.
+An emphatic no! There are a ton of things beyond your curriculum you can (and should) devote your time to as a student, including extracurricular activities (volunteering, leadership, clubs, competitions, etc.), online courses and certifications, research, among other things. Your goal should be to maintain a healthy balance of every facet.
 
 However, with that said, you should try to keep your CGPA as high as you can. A first class will not automatically open the door to every opportunity out there, but it will surely get your foot in the door! I do not know any high-achiever (A-student) with strong extracurriculars to go with, that is not either gainfully employed or at the zenith of their careers (academically or professionally). Be that student. Add the extra to the ordinary.\\
 
@@ -235,15 +243,16 @@ However, with that said, you should try to keep your CGPA as high as you can. A 
 \end{wrapfigure}
 Clinton Enwerem holds a first-class Bachelor’s degree in Electrical Engineering from the University of Nigeria, Nsukka, where he also finished in the top 3\% as the Class of 2018 best student in Control Systems.
 
-As an undergraduate, Clinton was a beneficiary of prestigious scholarships like the MTN Foundation Scholarship and the Agbami Medical and Engineering Professionals Scholarship. During this time, he served in various leadership positions, notably Assistant Technical Coordinator (for a campus guild) and Public Relations Officer (for an electronics club). Clinton was also a volunteer math tutor for a remedial pre-varsity academy and taught college-level math to freshmen and sophomores. A budding researcher, within two years following the award of his baccalaureate, Clinton co-authored four international research papers in top journals and conferences investigating model-based and robust control schemes.
+As an undergraduate, Clinton was a beneficiary of prestigious scholarships like the MTN Foundation Scholarship and the Agbami Medical and Engineering Professionals Scholarship. During this time, he served in various leadership positions, notably Assistant Technical Coordinator (for a campus guild) and Public Relations Officer (for an electronics club). He was also a volunteer math tutor for a remedial pre-varsity academy and taught college-level math to freshmen and sophomores. A budding researcher, within two years following the award of his baccalaureate, he co-authored four international research papers in top journals and conferences investigating model-based and robust control schemes.
 
-Outside academia, Clinton is a certified robotics engineer and technology entrepreneur passionate about educating a generation of African roboticists in preparation for Industry 4.0. Recently, working at Nigeria’s premier robotics research center, Robotics and Artificial Intelligence Nigeria (RAIN), Clinton built a ROS-compliant mini ground vehicle prototype with teleoperation and obstacle-avoidance features targeted at robotics enthusiasts. At RAIN, he also worked with a team to develop a modular ground robot platform and a quadrotor drone. In the spring of 2021, Clinton co-founded Kognitive Robotics to change the face of robotics in Africa by creating advanced all-inclusive robotics platforms.
+Outside academia, Clinton is a certified robotics engineer and technology entrepreneur passionate about educating a generation of African roboticists in preparation for Industry 4.0. Recently, working at Nigeria’s premier robotics research center, Robotics and Artificial Intelligence Nigeria (RAIN), he built a ROS-compliant mini ground vehicle prototype with teleoperation and obstacle-avoidance features targeted at robotics enthusiasts. At RAIN, he also worked with a team to develop a modular ground robot platform and a quadrotor drone. In the spring of 2021, he co-founded Kognitive Robotics to change the face of robotics in Africa by creating advanced and turnkey robotics platforms.
 
 %	In the summer of 2020, Clinton was one of the 40 out of 800 first-class applicants selected to participate in the highly-competitive EducationUSA Opportunity Funds Program, which marked a game-changing point in his postgraduate aspirations. Through the expert mentorship and guidance offered by the program, he secured a fully-funded scholarship for a Ph.D. in Electrical and Computer Engineering at the University of Maryland (UMD), College Park. Clinton will be attending UMD as a Dean’s Fellow and Graduate Research Assistant in the Autonomy, Robotics, and Cognition lab, where he aims to conduct research on Learning-Based Control for Autonomous Agents.
 
-Clinton has prepared this guide to encourage university students to keep records of their academic journey by calculating and documenting their grades and GPAs. Ultimately, his goal for this write-up is to spur undergraduates to attain to their best holistically during their university sojourn and beyond. You can write him at \texttt{clintonenwerem at gmail dot com}.
+Clinton has prepared this guide to encourage university students to keep records of their academic progress by calculating and documenting their grades and GPAs. Ultimately, his goal for this write-up is to spur undergraduates to attain to their best holistically during their university sojourn and beyond. 
 
-Clinton is currently a Graduate Research Assistant and Electrical and Computer Engineering Ph.D. student at the University of Maryland, College Park, U.S.A.
+He is currently a Graduate Research Assistant and Electrical and Computer Engineering Ph.D. student at the University of Maryland, College Park, U.S.A. You can write him at \texttt{clintonenwerem at gmail dot com}.
+
 %	In-text bibliography definitions
 \renewcommand\refname{\sffamily Reference}
 \lhead{}
